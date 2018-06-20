@@ -6,12 +6,15 @@
 #define PROJ_ANDROID_PLAYER_H
 
 #include "cocos2d.h"
+#include "Definations.h"
 
 USING_NS_CC;
 
 class Player {
 public:
     Player(cocos2d::Layer *layer);
+    void playerMoveRight();
+    void playerMoveLeft();
 
 private:
     Size visibleSize = Director::getInstance()->getVisibleSize();

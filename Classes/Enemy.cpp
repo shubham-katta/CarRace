@@ -30,9 +30,9 @@ void Enemy::enemyLeftCarMove(float delta)
         position.y += 35 * delta;
         if (position.y  > visibleSize.height + 10 )
         {
+            leftCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
             position.y = leftCarSpawnYpos;
             position.x = visibleSize.width/2 + leftCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]];
-            leftCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
         }
         leftCars[i]->setPosition(position);
     }
@@ -45,9 +45,9 @@ void Enemy::enemyRightCarMove(float delta)
         position.y -= 35 * delta;
         if (position.y  < origin.y - 10)
         {
+            rightCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
             position.y = rightCarSpawnYpos;
             position.x = visibleSize.width/2 + rightCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]];
-            rightCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
         }
         rightCars[i]->setPosition(position);
     }

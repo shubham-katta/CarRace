@@ -24,13 +24,14 @@ public:
     Enemy *enemy;
     bool gameStart = false;
 
+    bool onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event);
 
     CREATE_FUNC(GameScene);
 private:
     void update(float delta) override ;
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 };
-
-
 
 #endif //PROJ_ANDROID_GAMESCENE_H

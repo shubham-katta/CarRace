@@ -23,12 +23,14 @@ bool GameScene::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
+
+    auto touchListner = EventListenerTouchOneByOne::create();
+    touchListner->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListner, this);
+
     gameStart = true;
     this->scheduleUpdate();
     return true;
@@ -42,4 +44,15 @@ void GameScene::update(float delta)
         enemy->enemyLeftCarMove(delta);
         enemy->enemyRightCarMove(delta);
     }
+}
+bool GameScene::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
+{
+    if (visibleSize.width/2 > touch->getLocation().x)
+    {
+        player->playerMoveLeft();
+    } else
+    {
+        player->playerMoveRight();
+    }
+    return true;
 }
