@@ -36,7 +36,7 @@ void Road::startRoad(float delta)
 {
     for (int i = 0; i < noOfRoad; ++i) {
         auto position = roads[i]->getPosition();
-        position.y -= 50 * delta;
+        position.y -= 15 * delta;
         if (position.y  < 5 )
         {
             position.y = yPos  ;

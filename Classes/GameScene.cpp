@@ -29,7 +29,7 @@ bool GameScene::init()
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
-
+    gameStart = true;
     this->scheduleUpdate();
     return true;
 }
@@ -39,5 +39,7 @@ void GameScene::update(float delta)
     if (gameStart == true)
     {
         road->startRoad(delta);
+        enemy->enemyLeftCarMove(delta);
+        enemy->enemyRightCarMove(delta);
     }
 }
