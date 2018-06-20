@@ -28,6 +28,8 @@ public:
 
     CREATE_FUNC(GameScene);
 private:
+    cocos2d::PhysicsWorld *sceneWorld;
+    void setPhysicsWorld(cocos2d::PhysicsWorld *world);
     void update(float delta) override ;
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();

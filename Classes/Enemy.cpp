@@ -10,6 +10,9 @@ Enemy::Enemy(cocos2d::Layer *layer)
         leftCarYPos += DISTANCE_BETWEEN_CARS;
         auto leftCar = Sprite::create(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
         leftCar->setPosition(Vec2(visibleSize.width/2 + leftCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]],origin.y - leftCarYPos));
+        auto enemyBody = PhysicsBody::createBox(leftCar->getContentSize(),PhysicsMaterial(0,1,0));
+        enemyBody->setDynamic(false);
+        leftCar->setPhysicsBody(enemyBody);
         layer->addChild(leftCar,5);
         leftCars[i] = leftCar;
     }
@@ -17,6 +20,9 @@ Enemy::Enemy(cocos2d::Layer *layer)
         rightCarYPos += DISTANCE_BETWEEN_CARS;
         auto rightCar = Sprite::create(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
         rightCar->setPosition(Vec2(visibleSize.width/2 + rightCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]],visibleSize.height + rightCarYPos));
+        auto enemyBody = PhysicsBody::createBox(rightCar->getContentSize(),PhysicsMaterial(0,1,0));
+        enemyBody->setDynamic(false);
+        rightCar->setPhysicsBody(enemyBody);
         rightCar->setFlippedY(true);
         layer->addChild(rightCar,5);
         rightCars[i] = rightCar;

@@ -7,7 +7,10 @@
 Player::Player(cocos2d::Layer *layer)
 {
     player = Sprite::create("Audi.png");
-    player->setPosition(Vec2( visibleSize.width/2 + 25, 30));
+    player->setPosition(Vec2( visibleSize.width/2 + 25, 90));
+    auto playerBody = PhysicsBody::createBox(player->getContentSize(),PhysicsMaterial(0,1,0));
+    //playerBody->setDynamic(false);
+    player->setPhysicsBody(playerBody);
     layer->addChild(player, 5);
 }
 

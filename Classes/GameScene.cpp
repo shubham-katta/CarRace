@@ -7,9 +7,12 @@
 using namespace std;
 Scene* GameScene::createScene()
 {
-    auto scene = Scene::create();
+    auto scene = Scene::createWithPhysics();
+    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    scene->getPhysicsWorld( )->setGravity( Vect( 0, 0 ) );
 
     auto layer = GameScene::create();
+    layer->setPhysicsWorld( scene->getPhysicsWorld());
 
     scene->addChild(layer);
 
@@ -23,6 +26,12 @@ bool GameScene::init()
         return false;
     }
 
+    auto edgeBody = PhysicsBody::createEdgeBox(visibleSize,PHYSICSBODY_MATERIAL_DEFAULT,3);
+    auto edgeNode = Node::create();
+    edgeNode->setPosition(Vec2(visibleSize.width/2 + origin.x,visibleSize.height/2));
+    edgeNode->setPhysicsBody(edgeBody);
+    this->addChild(edgeNode);
+
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
@@ -34,6 +43,11 @@ bool GameScene::init()
     gameStart = true;
     this->scheduleUpdate();
     return true;
+}
+
+void GameScene::setPhysicsWorld(cocos2d::PhysicsWorld *world)
+{
+    sceneWorld = world;
 }
 
 void GameScene::update(float delta)
