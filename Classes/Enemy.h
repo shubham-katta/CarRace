@@ -12,10 +12,12 @@ USING_NS_CC;
 class Enemy {
 public:
     Enemy(cocos2d::Layer *layer);
-    Sprite* Cars[8];
+
 
 private:
-
+    std::string vehicleNames[8] = {"Ambulance.png","Black_viper.png","Car.png","Mini_truck.png","Mini_van.png","Police.png","taxi.png","truck.png"};
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 };
 
 

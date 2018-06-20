@@ -9,6 +9,7 @@
 #include <2d/CCScene.h>
 #include "Road.h"
 #include "Player.h"
+#include "Enemy.h"
 
 USING_NS_CC;
 
@@ -20,13 +21,16 @@ public:
     virtual bool init();
     Player *player;
     Road *road;
+    Enemy *enemy;
     bool gameStart = false;
+
 
     CREATE_FUNC(GameScene);
 private:
     void update(float delta) override ;
 
 };
+
 
 
 #endif //PROJ_ANDROID_GAMESCENE_H

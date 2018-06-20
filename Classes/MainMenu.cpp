@@ -60,7 +60,6 @@ bool MainMenu::init()
     menuItem->setPosition(Vec2(origin.x,origin.y));
     this->addChild(menuItem,3);
 
-
     return true;
 }
 

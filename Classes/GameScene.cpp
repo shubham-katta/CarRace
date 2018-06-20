@@ -4,6 +4,7 @@
 
 #include "GameScene.h"
 
+using namespace std;
 Scene* GameScene::createScene()
 {
     auto scene = Scene::create();
@@ -27,6 +28,8 @@ bool GameScene::init()
 
     player = new Player(this);
     road = new Road(this);
+    enemy = new Enemy(this);
+
     this->scheduleUpdate();
     return true;
 }
