@@ -8,7 +8,7 @@ using namespace std;
 Scene* GameScene::createScene()
 {
     auto scene = Scene::createWithPhysics();
-    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    //scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     scene->getPhysicsWorld( )->setGravity( Vect( 0, 0 ) );
 
     auto layer = GameScene::create();
@@ -43,6 +43,8 @@ bool GameScene::init()
     countDownTimer->setPosition(Vec2(visibleSize.width/2+origin.x,visibleSize.height/2));
     this->addChild(countDownTimer);
 
+    gameManager->displayScore(this);
+
     auto touchListner = EventListenerTouchOneByOne::create();
     touchListner->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListner, this);
@@ -68,6 +70,7 @@ void GameScene::update(float delta)
         road->startRoad(delta);
         enemy->enemyLeftCarMove(delta);
         enemy->enemyRightCarMove(delta);
+        gameManager->displayChangedScore(enemy->getScore());
     }
 }
 bool GameScene::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)

@@ -27,6 +27,7 @@ Enemy::Enemy(cocos2d::Layer *layer)
         layer->addChild(rightCar,5);
         rightCars[i] = rightCar;
     }
+    score = 0;
 }
 
 void Enemy::enemyLeftCarMove(float delta)
@@ -43,6 +44,7 @@ void Enemy::enemyLeftCarMove(float delta)
             auto enemyBody = PhysicsBody::createBox(leftCars[i]->getContentSize(),PhysicsMaterial(0,1,0));
             enemyBody->setDynamic(false);
             leftCars[i]->setPhysicsBody(enemyBody);
+            score++;
         }
         leftCars[i]->setPosition(position);
     }
@@ -65,4 +67,9 @@ void Enemy::enemyRightCarMove(float delta)
         }
         rightCars[i]->setPosition(position);
     }
+}
+
+int Enemy::getScore()
+{
+    return score;
 }

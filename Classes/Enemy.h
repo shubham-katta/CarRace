@@ -15,6 +15,7 @@ public:
     Enemy(cocos2d::Layer *layer);
     void enemyLeftCarMove(float delta);
     void enemyRightCarMove(float delta);
+    int getScore();
 
 private:
     std::string vehicleNames[8] = {"Ambulance.png","Black_viper.png","Car.png","Mini_truck.png","Mini_van.png","Police.png","taxi.png","truck.png"};
@@ -27,6 +28,7 @@ private:
     int loc[12] = {1,0,2,2,0,1,2,1,0,0,2,1};
     int leftCarLoc[3] = {-84,-40,4};
     int rightCarLoc[3] = {46,90,134};
+    int score;
     Sprite* leftCars[NO_OF_CARS_IN_LEFT_SIDE];
     Sprite* rightCars[NO_OF_CARS_IN_RIGHT_SIDE];
 };
