@@ -32,10 +32,16 @@ bool GameScene::init()
     edgeNode->setPhysicsBody(edgeBody);
     this->addChild(edgeNode);
 
+    scheduleOn = true;
+
     gameManager = new GameManager();
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
+
+    countDownTimer = Label::createWithTTF(to_string(gameManager->time),"fonts/arial.ttf",80);
+    countDownTimer->setPosition(Vec2(visibleSize.width/2+origin.x,visibleSize.height/2));
+    this->addChild(countDownTimer);
 
     auto touchListner = EventListenerTouchOneByOne::create();
     touchListner->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
@@ -52,6 +58,11 @@ void GameScene::setPhysicsWorld(cocos2d::PhysicsWorld *world)
 
 void GameScene::update(float delta)
 {
+    if (gameManager->gameStart == false && scheduleOn == true)
+    {
+        this->schedule(schedule_selector(GameScene::gameStartTimer),1.0f);
+        scheduleOn = false;
+    }
     if (gameManager->gameStart == true && gameManager->gameOver == false)
     {
         road->startRoad(delta);
@@ -61,12 +72,27 @@ void GameScene::update(float delta)
 }
 bool GameScene::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
 {
-    if (visibleSize.width/2 > touch->getLocation().x)
+    if (gameManager->gameStart == true)
     {
-        player->playerMoveLeft();
-    } else
-    {
-        player->playerMoveRight();
+        if (visibleSize.width/2 + origin.x > touch->getLocation().x)
+        {
+            player->playerMoveLeft();
+        } else
+        {
+            player->playerMoveRight();
+        }
     }
     return true;
+}
+
+void GameScene::gameStartTimer(float dt)
+{
+    gameManager->time--;
+    countDownTimer->setString(to_string(gameManager->time));
+    if (gameManager->time == 0)
+    {
+        gameManager->gameStart = true;
+        countDownTimer->removeFromParent();
+        this->unschedule(schedule_selector(GameScene::gameStartTimer));
+    }
 }

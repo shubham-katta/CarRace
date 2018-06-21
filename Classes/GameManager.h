@@ -10,10 +10,9 @@
 class GameManager {
 public:
     GameManager();
-    void gameStartTimer(cocos2d::Layer *layer);
     bool gameStart;
     bool gameOver;
-
+    int time ;
 
 private:
 

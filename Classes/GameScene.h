@@ -25,7 +25,7 @@ public:
     Road *road;
     Enemy *enemy;
 
-
+    void gameStartTimer(float dt);
     bool onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event);
 
     CREATE_FUNC(GameScene);
@@ -35,7 +35,8 @@ private:
     void update(float delta) override ;
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    Label* countDownTimer;
+    bool scheduleOn;
 };
 
 #endif //PROJ_ANDROID_GAMESCENE_H

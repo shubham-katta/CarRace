@@ -9,9 +9,5 @@ GameManager::GameManager()
 {
     gameStart = false;
     gameOver = false;
-}
-
-void GameManager::gameStartTimer(cocos2d::Layer *layer)
-{
-
+    time = 4;
 }
