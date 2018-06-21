@@ -39,6 +39,10 @@ void Enemy::enemyLeftCarMove(float delta)
             leftCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
             position.y = leftCarSpawnYpos;
             position.x = visibleSize.width/2 + leftCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]];
+            leftCars[i]->getPhysicsBody()->removeFromWorld();
+            auto enemyBody = PhysicsBody::createBox(leftCars[i]->getContentSize(),PhysicsMaterial(0,1,0));
+            enemyBody->setDynamic(false);
+            leftCars[i]->setPhysicsBody(enemyBody);
         }
         leftCars[i]->setPosition(position);
     }
@@ -54,6 +58,10 @@ void Enemy::enemyRightCarMove(float delta)
             rightCars[i]->setTexture(vehicleNames[cocos2d::RandomHelper::random_int(0,7)]);
             position.y = rightCarSpawnYpos;
             position.x = visibleSize.width/2 + rightCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]];
+            rightCars[i]->getPhysicsBody()->removeFromWorld();
+            auto enemyBody = PhysicsBody::createBox(rightCars[i]->getContentSize(),PhysicsMaterial(0,1,0));
+            enemyBody->setDynamic(false);
+            rightCars[i]->setPhysicsBody(enemyBody);
         }
         rightCars[i]->setPosition(position);
     }

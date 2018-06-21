@@ -61,6 +61,7 @@ list(APPEND GAME_SOURCE
      Classes/Road.cpp
      Classes/Player.cpp
      Classes/Enemy.cpp
+     Classes/GameManager.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -70,6 +71,8 @@ list(APPEND GAME_HEADER
      Classes/Road.h
      Classes/Player.h
      Classes/Enemy.h
+     Classes/Definations.h
+     Classes/GameManager.h
      )
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml

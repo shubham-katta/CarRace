@@ -10,6 +10,7 @@
 #include "Road.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "GameManager.h"
 
 USING_NS_CC;
 
@@ -19,10 +20,11 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
+    GameManager *gameManager;
     Player *player;
     Road *road;
     Enemy *enemy;
-    bool gameStart = false;
+
 
     bool onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event);
 

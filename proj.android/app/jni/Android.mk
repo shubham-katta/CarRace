@@ -18,7 +18,8 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
                    $(LOCAL_PATH)/../../../Classes/GameOverScene.cpp \
                    $(LOCAL_PATH)/../../../Classes/Road.cpp \
                    $(LOCAL_PATH)/../../../Classes/Player.cpp \
-                   $(LOCAL_PATH)/../../../Classes/Enemy.cpp
+                   $(LOCAL_PATH)/../../../Classes/Enemy.cpp \
+                   $(LOCAL_PATH)/../../../Classes/GameManager.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 

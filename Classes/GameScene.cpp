@@ -32,6 +32,7 @@ bool GameScene::init()
     edgeNode->setPhysicsBody(edgeBody);
     this->addChild(edgeNode);
 
+    gameManager = new GameManager();
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
@@ -40,7 +41,6 @@ bool GameScene::init()
     touchListner->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListner, this);
 
-    gameStart = true;
     this->scheduleUpdate();
     return true;
 }
@@ -52,7 +52,7 @@ void GameScene::setPhysicsWorld(cocos2d::PhysicsWorld *world)
 
 void GameScene::update(float delta)
 {
-    if (gameStart == true)
+    if (gameManager->gameStart == true && gameManager->gameOver == false)
     {
         road->startRoad(delta);
         enemy->enemyLeftCarMove(delta);

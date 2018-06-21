@@ -16,14 +16,20 @@ Player::Player(cocos2d::Layer *layer)
 
 void Player::playerMoveRight()
 {
-    auto position = player->getPosition();
-    position.x += PLAYER_SPEED ;
-    player->setPosition(position);
+    if (player->getPosition().x < visibleSize.width + origin.x - player->getContentSize().width - 5)
+    {
+        auto position = player->getPosition();
+        position.x += PLAYER_SPEED ;
+        player->setPosition(position);
+    }
 }
 
 void Player::playerMoveLeft()
 {
-    auto position = player->getPosition();
-    position.x -= PLAYER_SPEED ;
-    player->setPosition(position);
+    if (player->getPosition().x > origin.x + player->getContentSize().width + 5)
+    {
+        auto position = player->getPosition();
+        position.x -= PLAYER_SPEED;
+        player->setPosition(position);
+    }
 }
