@@ -38,6 +38,7 @@ bool GameScene::init()
     player = new Player(this);
     road = new Road(this);
     enemy = new Enemy(this);
+    player->speedBtns(this);
 
     countDownTimer = Label::createWithTTF(to_string(gameManager->time),"fonts/arial.ttf",80);
     countDownTimer->setPosition(Vec2(visibleSize.width/2+origin.x,visibleSize.height/2));
@@ -110,7 +111,8 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact)
     PhysicsBody *b = contact.getShapeB()->getBody();
     if (1 == a->getCollisionBitmask() && (2== b->getCollisionBitmask()) || 1 == b->getCollisionBitmask() && (2 == a->getCollisionBitmask() ))
     {
-       gameManager->gameOver = true;
+        gameManager->gameOver = true;
+        gameOverScene = new GameOverScene(this);
     }
     return true;
 }

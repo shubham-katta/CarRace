@@ -5,27 +5,11 @@
 #include "GameOverScene.h"
 
 
-Scene* GameOverScene::createScene()
+GameOverScene::GameOverScene(cocos2d::Layer *layer)
 {
-    auto scene = Scene::create();
-
-    auto layer = GameOverScene::create();
-
-    scene->addChild(layer);
-
-    return scene;
-}
-
-bool GameOverScene::init()
-{
-    if (!Layer::init())
-    {
-        return false;
-    }
-
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-
-    return true;
+    auto backGround = Sprite::create("CarRaceBackGround.png");
+    backGround->setPosition(Vec2(origin.x,origin.y));
+    backGround->setAnchorPoint(Vec2(0,0));
+    backGround->setScale(0.77f,1);
+    layer->addChild(backGround,10);
 }

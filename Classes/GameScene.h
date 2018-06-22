@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "GameManager.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ public:
     Player *player;
     Road *road;
     Enemy *enemy;
+    GameOverScene *gameOverScene;
 
     void gameStartTimer(float dt);
     bool onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event);

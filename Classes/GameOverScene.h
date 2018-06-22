@@ -6,19 +6,19 @@
 #define PROJ_ANDROID_GAMEOVERSCENE_H
 
 #include "cocos2d.h"
-#include <2d/CCScene.h>
+
 
 USING_NS_CC;
 
-class GameOverScene : public cocos2d::Layer {
+class GameOverScene  {
 public:
-    static cocos2d::Scene* createScene();
-
-    virtual bool init();
+    GameOverScene(cocos2d::Layer *layer);
 
 
-    CREATE_FUNC(GameOverScene);
 private:
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
 
 };
 

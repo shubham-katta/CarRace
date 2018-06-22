@@ -15,7 +15,9 @@ public:
     Player(cocos2d::Layer *layer);
     void playerMoveRight();
     void playerMoveLeft();
-    void speedBtn(cocos2d::Layer *layer);
+    void speedBtns(cocos2d::Layer *layer);
+    void speedIncrease(cocos2d::Ref *pSender);
+    void speedDecrease(cocos2d::Ref *pSender);
 
 private:
     Size visibleSize = Director::getInstance()->getVisibleSize();
