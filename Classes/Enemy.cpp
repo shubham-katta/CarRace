@@ -12,6 +12,8 @@ Enemy::Enemy(cocos2d::Layer *layer)
         leftCar->setPosition(Vec2(visibleSize.width/2 + leftCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]],origin.y - leftCarYPos));
         auto enemyBody = PhysicsBody::createBox(leftCar->getContentSize(),PhysicsMaterial(0,1,0));
         enemyBody->setDynamic(false);
+        enemyBody->setCollisionBitmask(2);
+        enemyBody->setContactTestBitmask(true);
         leftCar->setPhysicsBody(enemyBody);
         layer->addChild(leftCar,5);
         leftCars[i] = leftCar;
@@ -22,6 +24,8 @@ Enemy::Enemy(cocos2d::Layer *layer)
         rightCar->setPosition(Vec2(visibleSize.width/2 + rightCarLoc[loc[cocos2d::RandomHelper::random_int(0,11)]],visibleSize.height + rightCarYPos));
         auto enemyBody = PhysicsBody::createBox(rightCar->getContentSize(),PhysicsMaterial(0,1,0));
         enemyBody->setDynamic(false);
+        enemyBody->setCollisionBitmask(2);
+        enemyBody->setContactTestBitmask(true);
         rightCar->setPhysicsBody(enemyBody);
         rightCar->setFlippedY(true);
         layer->addChild(rightCar,5);
@@ -43,6 +47,8 @@ void Enemy::enemyLeftCarMove(float delta)
             leftCars[i]->getPhysicsBody()->removeFromWorld();
             auto enemyBody = PhysicsBody::createBox(leftCars[i]->getContentSize(),PhysicsMaterial(0,1,0));
             enemyBody->setDynamic(false);
+            enemyBody->setCollisionBitmask(2);
+            enemyBody->setContactTestBitmask(true);
             leftCars[i]->setPhysicsBody(enemyBody);
             score++;
         }
@@ -63,6 +69,8 @@ void Enemy::enemyRightCarMove(float delta)
             rightCars[i]->getPhysicsBody()->removeFromWorld();
             auto enemyBody = PhysicsBody::createBox(rightCars[i]->getContentSize(),PhysicsMaterial(0,1,0));
             enemyBody->setDynamic(false);
+            enemyBody->setCollisionBitmask(2);
+            enemyBody->setContactTestBitmask(true);
             rightCars[i]->setPhysicsBody(enemyBody);
         }
         rightCars[i]->setPosition(position);

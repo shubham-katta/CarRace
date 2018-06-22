@@ -49,6 +49,10 @@ bool GameScene::init()
     touchListner->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListner, this);
 
+    auto contactListner = EventListenerPhysicsContact::create();
+    contactListner->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListner, this);
+
     this->scheduleUpdate();
     return true;
 }
@@ -98,4 +102,15 @@ void GameScene::gameStartTimer(float dt)
         countDownTimer->removeFromParent();
         this->unschedule(schedule_selector(GameScene::gameStartTimer));
     }
+}
+
+bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact)
+{
+    PhysicsBody *a = contact.getShapeA()->getBody();
+    PhysicsBody *b = contact.getShapeB()->getBody();
+    if (1 == a->getCollisionBitmask() && (2== b->getCollisionBitmask()) || 1 == b->getCollisionBitmask() && (2 == a->getCollisionBitmask() ))
+    {
+       gameManager->gameOver = true;
+    }
+    return true;
 }
